@@ -6,6 +6,7 @@ import {
   Divider,
   IconButton,
   InputAdornment,
+  Popover,
   Stack,
   TextField,
   Typography,
@@ -23,8 +24,17 @@ import {
 } from "@phosphor-icons/react";
 import { PaperPlane } from "phosphor-react";
 import { useState } from "react";
-
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 const ChatHeader = () => {
+  const [anchorEl, SetanchorEl] = useState(null);
+  const handleClickcal = (event) => {
+    SetanchorEl(event.currentTarget);
+  }
+  const openCal = Boolean(anchorEl);
+  const id = openCal ? "3232" : undefined; 
+  const handleCloseCal = () => {
+    SetanchorEl(null);
+  }
   const [showSearch, setShowSearch] = useState(false);
   const handleToggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -63,9 +73,18 @@ const ChatHeader = () => {
             alignItems="center"
             spacing={1}
           >
-            <IconButton>
+            <IconButton onClick={handleClickcal}>
               <Calendar />
             </IconButton>
+            <Popover
+              id={id}
+              open={openCal}
+              anchorEl={anchorEl}
+              onClose={handleCloseCal}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+            >
+              <DateCalendar />
+            </Popover>
             <TextField
               fullWidth
               size="small"
@@ -150,28 +169,26 @@ const ChatWindow = () => {
                 },
               }}
             />
-         <Stack
-  direction={"row"}
-  alignItems={"center"}
-  justifyContent={"space-between"}
->
-  <Stack direction={"row"} alignItems={"center"}>
-    <IconButton>
-      <Smiley size={18} />
-    </IconButton>
-    <IconButton>
-      <File size={18} />
-    </IconButton>
-  </Stack>
-  <Stack>
-    {/* This empty Stack acts as a spacer */}
-  </Stack>
-  <Stack direction={"row"} spacing={1} alignItems={"center"}>
-    <Button variant="contained" startIcon={<PaperPlane />}>
-      Send
-    </Button>
-  </Stack>
-</Stack>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
+              <Stack direction={"row"} alignItems={"center"}>
+                <IconButton>
+                  <Smiley size={18} />
+                </IconButton>
+                <IconButton>
+                  <File size={18} />
+                </IconButton>
+              </Stack>
+              <Stack>{/* This empty Stack acts as a spacer */}</Stack>
+              <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                <Button variant="contained" startIcon={<PaperPlane />}>
+                  Send
+                </Button>
+              </Stack>
+            </Stack>
           </Stack>
         </Box>
       </Box>
