@@ -25,6 +25,7 @@ import {
 import { PaperPlane } from "phosphor-react";
 import { useState } from "react";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import UserProfile from "./UserProfile";
 const ChatHeader = () => {
   const [anchorEl, SetanchorEl] = useState(null);
   const handleClickcal = (event) => {
@@ -121,7 +122,7 @@ const ChatWindow = () => {
   const theme = useTheme();
 
   return (
-    <Stack direction="column" flexGrow={1} sx={{ height: "100vh" }}>
+    <Stack direction="row" flexrowGrow={1} sx={{ height: "100vh" }}>
       <Box
         sx={{
           display: "flex",
@@ -192,6 +193,8 @@ const ChatWindow = () => {
           </Stack>
         </Box>
       </Box>
+
+      <UserProfile />
     </Stack>
   );
 };
