@@ -8,7 +8,6 @@ function App() {
       <Box sx={{ height: "100vh", display: "flex" }}>
         {/* Side Bar */}
         <Sidebar />
-
         {/* Chat Window */}
         <ChatWindow />
       </Box>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faker } from "@faker-js/faker";
 import {
   Avatar,
@@ -26,16 +27,16 @@ import { PaperPlane } from "phosphor-react";
 import { useState } from "react";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import UserProfile from "./UserProfile";
-const ChatHeader = () => {
+const ChatHeader = ({ toggleUserProfile }) => {
   const [anchorEl, SetanchorEl] = useState(null);
   const handleClickcal = (event) => {
     SetanchorEl(event.currentTarget);
-  }
+  };
   const openCal = Boolean(anchorEl);
-  const id = openCal ? "3232" : undefined; 
+  const id = openCal ? "3232" : undefined;
   const handleCloseCal = () => {
     SetanchorEl(null);
-  }
+  };
   const [showSearch, setShowSearch] = useState(false);
   const handleToggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -49,7 +50,12 @@ const ChatHeader = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Stack direction="row" alignItems="center" spacing={2}>
+        <Stack
+          onClick={toggleUserProfile}
+          direction="row"
+          alignItems="center"
+          spacing={2}
+        >
           <Avatar src={faker.image.avatar()} alt={faker.person.fullName()} />
           <Typography>{faker.person.fullName()}</Typography>
         </Stack>
@@ -120,9 +126,16 @@ const ChatHeader = () => {
 
 const ChatWindow = () => {
   const theme = useTheme();
-
+  const [showUserProfile, setShowUserProfile] = useState(false);
+  const handleToggleUserProfile = () => {
+    setShowUserProfile((prev) => !prev);
+  };
   return (
-    <Stack direction="row" flexrowGrow={1} sx={{ height: "100vh" }}>
+    <Stack
+      direction="row"
+      flexrowGrow={1}
+      sx={{ height: "100vh", width: "100%" }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -132,7 +145,7 @@ const ChatWindow = () => {
           overflow: "hidden",
         }}
       >
-        <ChatHeader />
+        <ChatHeader toggleUserProfile={handleToggleUserProfile} />
         <Divider />
         {/*Messages*/}
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}></Box>
@@ -193,8 +206,7 @@ const ChatWindow = () => {
           </Stack>
         </Box>
       </Box>
-
-      <UserProfile />
+      {showUserProfile && <UserProfile onClose={handleToggleUserProfile} />}
     </Stack>
   );
 };
