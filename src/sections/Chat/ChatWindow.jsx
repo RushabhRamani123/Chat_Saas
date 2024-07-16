@@ -20,13 +20,13 @@ import {
   MagnifyingGlass,
   Phone,
   VideoCamera,
-  Smiley,
   File,
 } from "@phosphor-icons/react";
 import { PaperPlane } from "phosphor-react";
 import { useState } from "react";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import UserProfile from "./UserProfile";
+import EmojiPicker from "../../components/EmojiPicker";
 const ChatHeader = ({ toggleUserProfile }) => {
   const [anchorEl, SetanchorEl] = useState(null);
   const handleClickcal = (event) => {
@@ -189,9 +189,7 @@ const ChatWindow = () => {
               justifyContent={"space-between"}
             >
               <Stack direction={"row"} alignItems={"center"}>
-                <IconButton>
-                  <Smiley size={18} />
-                </IconButton>
+                <EmojiPicker />
                 <IconButton>
                   <File size={18} />
                 </IconButton>
