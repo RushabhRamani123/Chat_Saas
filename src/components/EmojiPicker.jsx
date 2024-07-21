@@ -6,6 +6,7 @@ import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { Box, IconButton } from "@mui/material";
 import { Smiley } from "phosphor-react";
+// import { cleanDigitSectionValue } from "@mui/x-date-pickers/internals/hooks/useField/useField.utils";
 const RootStyle = styled(Box)({
   position: "relative",
 });
@@ -29,7 +30,6 @@ const EmojiPicker = ({
   const theme = useTheme();
   let emojiPicker;
   if (emojiPickerState) {
-    // eslint-disable-next-line no-unused-vars
     emojiPicker = (
       <Picker
         data={data}
@@ -38,13 +38,13 @@ const EmojiPicker = ({
         onSelect={(emoji) => {
           setValue(value + emoji?.native)
         }}
-
+        theme="light" 
       />
     );
   }
   const triggerPicker = (e) => {
     e.preventDefault();
-    setEmojiPickerState(true);
+    setEmojiPickerState((prev)=> !prev );
   };
   const handleClickAway = () => {
     setEmojiPickerState(false);

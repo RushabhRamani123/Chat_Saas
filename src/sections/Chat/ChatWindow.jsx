@@ -131,11 +131,7 @@ const ChatWindow = () => {
     setShowUserProfile((prev) => !prev);
   };
   return (
-    <Stack
-      direction="row"
-      flexrowGrow={1}
-      sx={{ height: "100vh", width: "100%" }}
-    >
+    <Stack direction="row" sx={{ flexGrow: 1 }}>
       <Box
         sx={{
           display: "flex",
@@ -148,7 +144,49 @@ const ChatWindow = () => {
         <ChatHeader toggleUserProfile={handleToggleUserProfile} />
         <Divider />
         {/*Messages*/}
-        <Box sx={{ flexGrow: 1, overflowY: "auto" }}></Box>
+        <Box
+          sx={{
+            flexGrow: 1,
+            overflowY: "auto",
+            p: 2,
+            display: "flex",
+            flexDirection: "column",
+            gap: "2",
+          }}
+        >
+          <Stack
+            direction={"row"}
+            alignItems={"flex-end"}
+            justifyContent={"flex-start"}
+          >
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: 1,
+                bgcolor: (theme) => theme.palette.grey[100],
+                boxShadow: (theme) => theme.shadows[1],
+              }}
+            >
+              <Typography>Hi, I am just testing.</Typography>
+            </Box>
+          </Stack>
+          <Stack
+            direction={"row"}
+            alignItems={"flex-end"}
+            justifyContent={"flex-end"}
+          >
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: 1,
+                bgcolor: (theme) => theme.palette.grey[100],
+                boxShadow: (theme) => theme.shadows[1],
+              }}
+            >
+              <Typography>Hi, I am just testing.</Typography>
+            </Box>
+          </Stack>
+        </Box>
         {/* Sending message */}
         <Box
           sx={{
