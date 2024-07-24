@@ -10,7 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-const Login = () => {
+
+const Signup = () => {
   return (
     <Box sx={{ height: "100vh" }}>
       <Container maxWidth="sm" sx={{ height: 1 }}>
@@ -21,12 +22,24 @@ const Login = () => {
             <CardContent>
               <Stack spacing={3}>
                 <Stack spacing={2}>
-                  <Typography variant="h5">Login</Typography>
+                  <Typography variant="h5">Signup</Typography>
                   <Typography variant="subtittle2">
-                    Enter your Email below to login into account
+                    Enter your information to create your account
                   </Typography>
                 </Stack>
                 <Stack spacing={2}>
+                  <Stack direction={"row"} spacing={2}>
+                    <TextField
+                      fullWidth="false"
+                      label="Firstname"
+                      placeholder="Enter your firstname"
+                    />
+                    <TextField
+                      fullWidth="false"
+                      label="Lastname"
+                      placeholder="Enter your Lastname"
+                    />
+                  </Stack>
                   <TextField
                     fullWidth="false"
                     label="email"
@@ -49,11 +62,9 @@ const Login = () => {
                   alignItems={"center"}
                   justifyContent={"center"}
                 >
-                  <Typography variant="body2">
-                    Don't have an account?
-                  </Typography>
-                  <Link to="/signup" sx={{ cursor: "pointer" }}>
-                    Signup
+                  <Typography variant="body2">Already an account?</Typography>
+                  <Link to="/login" sx={{ cursor: "pointer" }}>
+                    Login
                   </Link>
                 </Stack>
               </Stack>
@@ -64,4 +75,5 @@ const Login = () => {
     </Box>
   );
 };
-export default Login;
+
+export default Signup;
